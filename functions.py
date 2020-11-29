@@ -63,8 +63,13 @@ def number_of_atoms(formula):
 
     must return 3 (Observe that this function counts the repetitions of atoms)
     """
-    pass
-    # ======== YOUR CODE HERE ========
+
+    if isinstance(formula, Atom):
+        return 1
+    if isinstance(formula, Not):
+        return number_of_atoms(formula.inner)
+    if isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
+        return number_of_atoms(formula.left) + number_of_atoms(formula.right)
 
 
 def number_of_connectives(formula):
