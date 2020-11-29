@@ -49,5 +49,9 @@ for subformula in subformulas(formula8):
 print('number of subformulas of formula8:', len(subformulas(formula8)))
 print('len(subformulas(formula8)) <= length(formula8):', len(subformulas(formula8)) <= length(formula8))
 
-# testing number_of_atoms function
+# testing number_of_atoms() function
 print('number of atoms:', number_of_atoms(formula8))
+
+# testing atoms() function
+for atom in atoms(formula8):
+    print(atom)

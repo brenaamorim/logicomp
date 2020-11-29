@@ -52,8 +52,13 @@ def atoms(formula):
     This piece of code above prints: p, s
     (Note that there is no repetition of p)
     """
-    pass
-    # ======== YOUR CODE HERE ========
+
+    if isinstance(formula, Atom):
+        return {formula}
+    if isinstance(formula, Not):
+        return atoms(formula.inner)
+    if isinstance(formula, Implies) or isinstance(formula, And) or isinstance(formula, Or):
+        return atoms(formula.left).union(atoms(formula.right))
 
 
 def number_of_atoms(formula):
