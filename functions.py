@@ -91,5 +91,17 @@ def number_of_connectives(formula):
 def substitution(formula, old_subformula, new_subformula):
     """Returns a new formula obtained by replacing all occurrences
     of old_subformula in the input formula by new_subformula."""
-    pass
-    # ======== YOUR CODE HERE ========
+
+    if isinstance(formula, Atom) and (not formula.__eq__(old_subformula)):
+        return formula
+    if formula.__eq__(old_subformula):
+        return new_subformula
+    if isinstance(formula, Implies) and (not formula.__eq__(old_subformula)):
+        return Implies(substitution(formula.left, old_subformula, new_subformula), substitution(formula.right, old_subformula, new_subformula))
+    if isinstance(formula, And) and (not formula.__eq__(old_subformula)):
+        return And(substitution(formula.left, old_subformula, new_subformula), substitution(formula.right, old_subformula, new_subformula))
+    if isinstance(formula, Or) and (not formula.__eq__(old_subformula)):
+        return Or(substitution(formula.left, old_subformula, new_subformula), substitution(formula.right, old_subformula, new_subformula))
+    if isinstance(formula, Not) and (not formula.__eq__(old_subformula)):
+        return Not(substitution(formula.inner, old_subformula, new_subformula))
+

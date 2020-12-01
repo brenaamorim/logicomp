@@ -49,13 +49,23 @@ for subformula in subformulas(formula8):
 print('number of subformulas of formula8:', len(subformulas(formula8)))
 print('len(subformulas(formula8)) <= length(formula8):', len(subformulas(formula8)) <= length(formula8))
 
-# testing number_of_atoms() function
-print('number of atoms:', number_of_atoms(formula8))
+# testing number_of_atoms() method
+print('number of atoms:', number_of_atoms(formula3))
 
-# testing atoms() function
+# testing atoms() method
 print('atoms of formula8:')
-for atom in atoms(formula8):
+for atom in atoms(formula3):
     print(atom)
 
-# testing number_of_connectives() function
-print('number of connectives of formula8:', number_of_connectives(formula8))
+# testing number_of_connectives() method
+print('number of connectives of formula3:', number_of_connectives(formula3))
+
+# testing substitution() method
+formula10 = Implies(And(Atom('p'), Not(Atom('q'))), Atom('r'))  # (((p ^ ¬q)) -> r)
+formula11 = Not(Atom('q'))
+formula12 = Or(Atom('r'), Atom('t'))
+print(formula10)
+print(formula11)
+print(formula12)
+print()
+print('substitution of formula10:', substitution(formula10, formula11, formula12))
